@@ -5,6 +5,8 @@ class DichotonomyMethod:
     def __function(self, x): 
         return x * 10 - 4
     def get_result(self, a, b, e):
+        if (self.__function(a)/self.__function(b) > 0.0):
+            return "The signs at the ends of the line are the same."
         while math.fabs(a-b) > e:
             c = (a+b)/2
             if(self.__function(c) == 0):
@@ -31,9 +33,9 @@ if __name__ == "__main__":
     b = input()
     print("Input accuracy")
     e = input()
-    if (a.isdigit() and b.isdigit() and is_digit(e)):
-        a = int(a)
-        b = int(b)
+    if (is_digit(a) and is_digit(b) and is_digit(e)):
+        a = float(a)
+        b = float(b)
         e = float(e)
     else:
         print("Wrong input. Try again..")
