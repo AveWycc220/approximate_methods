@@ -17,28 +17,3 @@ class DichotonomyMethod:
                 a = c
         return c
 
-def is_digit(str):
-    if str.isdigit():
-       return True
-    else:
-        try:
-            float(str)
-            return True
-        except ValueError:
-            return False   
-
-if __name__ == "__main__":
-    print("Input the borders of section")
-    a = input()
-    b = input()
-    print("Input accuracy")
-    e = input()
-    if (is_digit(a) and is_digit(b) and is_digit(e)):
-        a = float(a)
-        b = float(b)
-        e = float(e)
-    else:
-        print("Wrong input. Try again..")
-        raise SystemExit('ValueError')
-    DM = DichotonomyMethod()
-    print(round(DM.get_result(a,b,e),10))
