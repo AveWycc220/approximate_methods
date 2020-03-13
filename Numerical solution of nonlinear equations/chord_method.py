@@ -1,21 +1,14 @@
 import math
 
-class DichotonomyMethod:
+class ChordMethod:
     # Method that return the given equation.
     def __function(self, x): 
         return x * 10 - 4
     def get_result(self, a, b, e):
-        if (self.__function(a)/self.__function(b) > 0.0):
-            return "The signs at the ends of the line are the same."
-        while math.fabs(a-b) > e:
-            c = (a+b)/2
-            if(self.__function(c) == 0):
-                return c
-            if(self.__function(a) * self.__function(c) < 0):
-                b = c
-            else:
-                a = c
-        return c
+        while(math.fabs(b - a) > e):
+    	    a = b - (b - a) * self.__function(b) / (self.__function(b) - self.__function(a))
+    	    b = a + (a - b) * self.__function(a) / (self.__function(a) - self.__function(b))
+        return b
 
 def is_digit(str):
     if str.isdigit():
@@ -40,5 +33,5 @@ if __name__ == "__main__":
     else:
         print("Wrong input. Try again..")
         raise SystemExit('ValueError')
-    DM = DichotonomyMethod()
-    print(round(DM.get_result(a,b,e),10))
+    CM = ChordMethod()
+    print(round(CM.get_result(a,b,e),10))
