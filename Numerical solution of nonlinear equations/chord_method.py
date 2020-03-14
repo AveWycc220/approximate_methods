@@ -8,4 +8,6 @@ class ChordMethod:
         while(math.fabs(a-b) > e):
             a = b - (b - a) * self.__function(b) / (self.__function(b) - self.__function(a))
             b = a + (a - b) * self.__function(a) / (self.__function(a) - self.__function(b))
+            if (self.__function(b) == 0):
+                return b
         return b
