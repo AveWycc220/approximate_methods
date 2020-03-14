@@ -29,7 +29,7 @@ while True:
             raise SystemExit('ValueError')
     elif(choose == "2" and 'a' in locals()):
         NM = nm.NewtonMethod(); CM = cm.ChordMethod(); DM = dm.DichotonomyMethod()
-        print(F'NewtonMethod = {round(NM.get_result(a,b,e),10)} | DichotonomyMethod = {DM.get_result(a,b,e)} | ChordMethod = {round(CM.get_result(a,b,e),10)}')
+        print(F"NewtonMethod = {NM.get_result(a,e)} | DichotonomyMethod = {DM.get_result(a,b,e)} | ChordMethod = {CM.get_result(a,b,e)}")
     elif(choose == "0"):
         break
     else:

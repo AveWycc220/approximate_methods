@@ -3,7 +3,7 @@ import math
 class DichotonomyMethod:
     # Method that return the given equation.
     def __function(self, x): 
-        return x * 10 - 4
+        return x * 10 - 4 
     def get_result(self, a, b, e):
         if (self.__function(a)/self.__function(b) > 0.0):
             return "The signs at the ends of the line are the same."

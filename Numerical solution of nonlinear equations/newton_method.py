@@ -8,7 +8,7 @@ class NewtonMethod:
     def __df(self):
         x = symbols('x')
         return diff(x* 10 -4)
-    def get_result(self, a, e, x):
+    def get_result(self, a, e):
         __max_iter = 1000
         i = 0
         while(i < __max_iter):
