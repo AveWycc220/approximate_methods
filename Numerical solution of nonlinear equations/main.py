@@ -4,12 +4,12 @@ import dichotomy_method as dm
 
 # You can change function in modules
 
-def is_digit(str):
+def is_digit(string):
     if str.isdigit():
-       return True
+        return True
     else:
         try:
-            float(str)
+            float(string)
             return True
         except ValueError:
             return False   
