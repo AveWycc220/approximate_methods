@@ -13,13 +13,11 @@ class NumInt():
         a,b - Limits of integration
         eps - Accuracy
         """ 
-        n = 100 # Started number of steps
+        n = 1 / eps
         dn = n / 2
         second = NumInt.__simpson_integral(a, b, n)
         first = second
         n += dn
-        if n%2 == 1:
-            n += 1
         second = NumInt.__simpson_integral(a, b, n)
         while math.fabs(first-second) > eps:
             first = second
@@ -40,9 +38,32 @@ class NumInt():
             x += 2*h
         return h/3 * (s+4*f(b-h))
 
+    @staticmethod
+    def rectangle(a, b, eps):
+        """ Rectangle method """
+        n = eps
+        first = NumInt.__rectangle(a, b, n)
+        second = NumInt.__rectangle(a, b, n)
+        while math.fabs(first-second) > eps:
+            first = second
+            n *= 0.1
+            second = NumInt.__rectangle(a, b, n)
+        return second
+
+    @staticmethod
+    def __rectangle(a, b, h):
+        """ Rectangle integral """
+        s = 0
+        x = a
+        while x <= b - h:
+            x += h
+            s += h* f(x+h/2)
+        return s
+
 if __name__ == "__main__":
+    # left -> a, right -> b, accurace -> eps
     left = 0
     right = 20
-    accuracy = 0.001
-    NumInt.simpson(left, right, accuracy)
-
+    accuracy = 0.00001
+    print(NumInt.simpson(left, right, accuracy))
+    print(NumInt.rectangle(left, right, accuracy))
