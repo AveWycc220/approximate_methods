@@ -5,7 +5,7 @@ import dichotomy_method as dm
 # You can change function in modules
 
 def is_digit(string):
-    if str.isdigit():
+    if string.isdigit():
         return True
     else:
         try:
