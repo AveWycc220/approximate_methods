@@ -96,12 +96,12 @@ class NumInt():
         return s
 
 if __name__ == "__main__":
-    # left -> a, right -> b, accurace -> eps
+    # left -> a, right -> b, accuracy -> eps
     print("Input the left border")
     left = input()
     print("Input the right border")
     right = input()
-    print("Input accurace")
+    print("Input accuracy")
     accuracy = input()
     if (is_digit(left) and is_digit(right) and is_digit(accuracy)):
         left = float(left)
