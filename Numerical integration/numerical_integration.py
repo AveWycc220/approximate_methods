@@ -3,6 +3,16 @@ import math
 
 f = lambda x: x**2 + 2
 
+def is_digit(string):
+    if string.isdigit():
+        return True
+    else:
+        try:
+            float(string)
+            return True
+        except ValueError:
+            return False
+
 class NumInt():
     """ Class for methods of numerical integration """
 
@@ -87,9 +97,20 @@ class NumInt():
 
 if __name__ == "__main__":
     # left -> a, right -> b, accurace -> eps
-    left = 0
-    right = 20
-    accuracy = 0.01
-    print(NumInt.simpson(left, right, accuracy))
-    print(NumInt.rectangle(left, right, accuracy))
-    print(NumInt.trapezoid(left, right, accuracy))
+    print("Input the left border")
+    left = input()
+    print("Input the right border")
+    right = input()
+    print("Input accurace")
+    accuracy = input()
+    if (is_digit(left) and is_digit(right) and is_digit(accuracy)):
+        left = float(left)
+        right = float(right)
+        accuracy = float(accuracy)
+    else:
+        print("Wrong input. Try again..")
+        raise SystemExit('ValueError')
+    print(F"For a = {left} | b = {right} | eps = {accuracy} ->")
+    print(F"Simpson's method = {NumInt.simpson(left, right, accuracy)} ")
+    print(F"Rectangle method = {NumInt.rectangle(left, right, accuracy)} ")
+    print(F"Trapezoid method = {NumInt.trapezoid(left, right, accuracy)} ")
