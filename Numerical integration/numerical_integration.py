@@ -43,6 +43,7 @@ class NumInt():
         """ Rectangle method """
         n = eps
         first = NumInt.__rectangle(a, b, n)
+        n *= 0.1
         second = NumInt.__rectangle(a, b, n)
         while math.fabs(first-second) > eps:
             first = second
@@ -59,11 +60,36 @@ class NumInt():
             x += h
             s += h* f(x+h/2)
         return s
+    
+    @staticmethod
+    def trapezoid(a, b, eps):
+        """ Trapezoid method """
+        n = eps
+        first = NumInt.__trapezoid(a, b, n)
+        n *= 0.1
+        second = NumInt.__trapezoid(a, b, n)
+        while math.fabs(first-second) > eps:
+            first = second
+            n *= 0.1
+            second = NumInt.__trapezoid(a, b, n)
+        return second
+
+    @staticmethod
+    def __trapezoid(a, b, h):
+        """ Trapezoid integral """
+        s = 0
+        x = a + h
+        while x < b: 
+            x += h
+            s += f(x)
+        s = h*(s+(f(a)+ f(b))/2)
+        return s
 
 if __name__ == "__main__":
     # left -> a, right -> b, accurace -> eps
     left = 0
     right = 20
-    accuracy = 0.00001
+    accuracy = 0.01
     print(NumInt.simpson(left, right, accuracy))
     print(NumInt.rectangle(left, right, accuracy))
+    print(NumInt.trapezoid(left, right, accuracy))
