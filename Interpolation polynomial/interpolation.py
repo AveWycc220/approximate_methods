@@ -3,14 +3,11 @@ import numpy as np
 import matplotlib.pyplot as pl
 
 step_lagrange = 0.7
-newton_step = 0.7
+newton_step = 0.4
 
 
 def f(xf):
-    if xf > math.pi:
-        return math.cos(xf)
-    else: 
-        return math.tan(xf)
+    return math.cos(xf)
 
 def lagrange(xl,yl,t):
     polynom=0
@@ -25,24 +22,26 @@ def lagrange(xl,yl,t):
         polynom=polynom+yl[j]*numerator/denumerator
     return polynom
 
-def delta(y,k,i):
+def delta(y_d,k,i):
     c=1.0
     s=0.0
     for j in range(k):
-        s=s+c*y[i+k-j]
+        s=s+c*y_d[i+k-j]
         c=c*(-1)*(k-j)/(j+1)
     return s
 
-def newton(x,y):
+def newton(x_n,y_n):
     z = 0
+    j = 0
     s_list = list()
     h = int(round(10/newton_step))
-    for j in np.arange(0,10,newton_step):
+    while j < 10:
+        j += newton_step
         s = y[0]
         a=1
         for i in range(1,h):
-            a *= (z-x[i-1])/(i*newton_step)
-            s += delta(y,i,0)*a
+            a *= (z-x_n[i-1])/(i*newton_step)
+            s += delta(y_n,i,0)*a
         z += newton_step
         s_list.append(s)
     return s_list
