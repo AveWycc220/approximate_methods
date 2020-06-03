@@ -1,13 +1,13 @@
 import ast
 
 def gauss_seidel(a, x , b):
-    xtemp = [0, 0, 0]
+    xtemp = [0 for i in range(N)]
     while True:
         maxe = 0
-        for j in range(0, N):
+        for j in range(N):
             xtemp
             d = b[j]
-            for i in range(0, N):
+            for i in range(N):
                 if(j != i):
                     d-=a[j][i] * x[i]
             x[j] = d / a[j][j]
@@ -19,10 +19,10 @@ def gauss_seidel(a, x , b):
     return x
 
 if __name__ == "__main__":
-    x = [0, 0, 0]
     try: 
         EPS = ast.literal_eval(input("Input accuracy\n"))
         N = ast.literal_eval(input("Input size of square matrix\n"))
+        x = [0 for i in range(N)]
         a = ast.literal_eval(input("Input matrix like '[[a11, a12, a13 ... a1N][a21, a22, a23 ... a2N] ...\
 [aN1, aN2, aN3 ... aNN]]'\n"))
         b = ast.literal_eval(input("Input result of equation like [b1, b2, b3 ... bN]\n"))
