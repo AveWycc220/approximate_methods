@@ -24,6 +24,18 @@ def euler_recount(x, y, n):
         print(F'{x[i+1]:20} | {y[i+1]:20} | {check(x[i+1]):20}')
     return x,y
 
+def runge_kutta(x, y, n): 
+    print('Method of Runge-Kutta')
+    for i in range(n-1): 
+        k0 = f(x[i], y[i])
+        k1 = f(x[i] + h/2, y[i] + h*k0/2)
+        k2 = f(x[i] + h/2, y[i] + h*k1/2)
+        k3 = f(x[i] + h, y[i]+h*k2)
+        y[i+1] = y[i] + h/6 * (k0 + 2*k1 + 2*k2 + k3)
+        x[i+1] = x[i] + h
+        print(F'{x[i+1]:20} | {y[i+1]:20} | {check(x[i+1]):20}')
+    return x,y
+
 if __name__ == "__main__":
     a = 0
     b = 1
@@ -51,4 +63,10 @@ if __name__ == "__main__":
     plt.xlabel("Value of x")
     plt.ylabel("Value of y")
     plt.title("Approximation Solution with Euler's Method With Recount")
+    plt.show()
+    x_rk, y_rk = runge_kutta(x, y, n)
+    plt.plot(x_er,y_er,'o', ms=2, color='black')
+    plt.xlabel("Value of x")
+    plt.ylabel("Value of y")
+    plt.title("Approximation Solution with Runge-Kutta Method")
     plt.show()
