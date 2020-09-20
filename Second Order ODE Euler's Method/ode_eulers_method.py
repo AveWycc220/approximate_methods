@@ -2,8 +2,8 @@ import ast
 import sys
 import math
 
-f = lambda y: 4*y
-check = lambda x: math.e**(2*x)
+f = lambda x,y,u: (2*x*u)/(1+x**2)
+check = lambda x: x**3 + 3*x
 
 def euler_method(x, y, u, n):
     print("Euler")
@@ -11,13 +11,13 @@ def euler_method(x, y, u, n):
     for i in range(n-1):
         x[i+1] = x[i] + h
         y[i+1] = y[i] + h*u[i]
-        u[i+1] = u[i] + h*f(y[i])
+        u[i+1] = u[i] + h*f(x[i], y[i], u[i])
         print(F'{x[i+1]:20} | {y[i+1]:20} | {check(x[i+1]):20}')
     return x,y,u
 
 if __name__ == "__main__":
     a = 0
-    b = 2
+    b = 3
     try:
         h = ast.literal_eval(input("Input the value of step\n"))
         if not isinstance(h, (float,int)): 
@@ -30,6 +30,6 @@ if __name__ == "__main__":
     x = [0 for i in range (n)]
     y = [0 for i in range (n)]
     u = [0 for i in range (n)]
-    y[0] = 1
-    u[0] = 2
+    y[0] = 0
+    u[0] = 3
     x,y,u = euler_method(x, y, u, n)

@@ -3,11 +3,9 @@
 #include <conio.h>
 
 double f(double y){
-    return 4*y;
 }
 
-double check(double x){
-    return exp(2*x);
+double y_check(double x){
 }
 
 int main(){
@@ -27,7 +25,7 @@ int main(){
         x[i+1] = x[i] + h;
         y[i+1] = y[i] + h*u[i];
         u[i+1] = u[i] + h*f(y[i]);
-        printf("%f | %f | %f\n", x[i+1], y[i+1], check(x[i+1]));
+        printf("%f | %f | %f\n", x[i+1], y[i+1], y_check(x[i+1]));
     }
     _getch();
     return 0;
